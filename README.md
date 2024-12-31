@@ -1,247 +1,218 @@
-## 1. Introduction
+![image](https://github.com/user-attachments/assets/493b6617-413e-410e-98a8-e054f64a2b84)
 
-Deep Convolutional Generative Adversarial Networks (DCGANs) represent a breakthrough in generative modeling, combining the power of convolutional neural networks with the creativity of adversarial learning. Introduced in 2015 by Radford et al., DCGANs leverage convolutional layers to generate high-quality, realistic images from random noise.
 
-This repository showcases a step-by-step implementation of a DCGAN, focusing on simplicity and clarity. It is designed for learners and developers who want to understand how DCGANs work and explore their potential for generative tasks such as image synthesis, data augmentation, and artistic applications.
+<h1 align="center">🖼️ Generative Adversarial Network (GAN) for Face Generation 🖼️</h1>
 
-By the end of this project, you will gain hands-on experience in:
-- Building and training a DCGAN from scratch.
-- Understanding the interplay between the generator and discriminator.
-- Exploring the mathematical foundations of GANs and their optimization process.
+<p align="center">
+<strong>A Deep Learning project utilizing GANs to generate realistic faces with TensorFlow and Keras.</strong>
+</p>
 
-## 2. Why Use Deep Convolutional Generative Adversarial Networks?
+<p align="center">
+<a href="https://github.com/Aman-Devs/Generative-Adversarial-Network-GAN">
+<img src="https://img.shields.io/github/license/its-amann/Face-Generation-with-Deep-Convolutional-Generative-Neural-Network.svg" alt="License">
+</a>
+<a href="https://github.com/Aman-Devs/Generative-Adversarial-Network-GAN/issues">
+<img src="https://img.shields.io/github/issues/its-amann/Face-Generation-with-Deep-Convolutional-Generative-Neural-Network.svg" alt="Issues">
+</a>
+<a href="https://github.com/Aman-Devs/Generative-Adversarial-Network-GAN/stargazers">
+<img src="https://img.shields.io/github/stars/its-amann/Face-Generation-with-Deep-Convolutional-Generative-Neural-Network.svg" alt="Stars">
+</a>
+</p>
 
-Deep Convolutional Generative Adversarial Networks (DCGANs) are a powerful extension of traditional GANs, designed to generate high-quality, realistic images. Here's why DCGANs are particularly effective:
+🚀 Overview
 
-- **Feature Extraction with Convolutional Layers:** By utilizing convolutional layers, DCGANs effectively capture spatial hierarchies and features from input data, making them especially suited for image-based tasks.
-- **Stability in Training:** Compared to vanilla GANs, DCGANs improve the training process by incorporating techniques like batch normalization and LeakyReLU activations.
-- **Scalability:** DCGANs can be scaled to handle larger and more complex datasets without a significant loss in performance or quality.
-- **Versatility:** DCGANs are widely used in tasks like image generation, data augmentation, and even creative applications such as style transfer and image-to-image translation.
+Welcome to the Generative Adversarial Network (GAN) Project, a sophisticated implementation of a GAN that generates realistic faces. This project is designed to explore the power of adversarial networks in creating synthetic data that closely resembles real-world examples. It's a deep dive into how generator and discriminator networks work together in a competitive yet collaborative environment to produce lifelike imagery. This repository contains the necessary code and setup to understand, train, and use your own GAN model for generating faces.
 
-By leveraging deep convolutional architectures, DCGANs strike a balance between simplicity and performance, making them an ideal choice for generative tasks.
+✨ Key Highlights:
 
-## 3. Why This Particular Convolutional Architecture?
+Adversarial Training: Leverages the core principles of GANs, where two neural networks (generator and discriminator) compete to improve each other.
 
-The architecture used in this DCGAN implementation is carefully designed to strike a balance between simplicity, efficiency, and performance. Here’s why this architecture stands out:
+High-Quality Output: Generates visually compelling and realistic face images using a complex architecture.
 
-- **Generator Design:**
-  - **Transposed Convolution Layers:** Used to upsample the latent noise vector into meaningful, high-dimensional data.
-  - **Batch Normalization:** Helps in stabilizing training by normalizing layer inputs, avoiding issues like mode collapse.
-  - **Activation Functions:** Uses ReLU activations for the generator, ensuring non-linearity and promoting gradient flow.
+TensorFlow & Keras: Built with cutting-edge deep learning frameworks for optimal performance and flexibility.
 
-- **Discriminator Design:**
-  - **Convolutional Layers:** Extracts hierarchical features from the input images to classify real and fake data.
-  - **LeakyReLU Activation:** Allows small gradients to flow through when inputs are negative, mitigating the vanishing gradient problem.
-  - **Dropout:** Introduced for regularization, ensuring the model generalizes well.
+Customizable: Designed to be easily modified and extended to fit other data generation tasks.
 
-- **Optimizations:**
-  - **Adam Optimizer:** Used for both generator and discriminator, offering efficient and adaptive learning.
-  - **Loss Functions:** A modified binary cross-entropy loss ensures better communication between generator and discriminator.
+End-to-End Project: Provides a complete pipeline from data loading to image generation, ideal for learning and experimentation.
 
-### Why Not Other Architectures?
-While other GAN variants like Wasserstein GANs or StyleGANs offer their unique advantages, this particular DCGAN architecture is chosen for its:
-- **Accessibility:** Easy to implement and understand, especially for learners.
-- **Proven Effectiveness:** DCGANs are a well-documented starting point for generative models, with established benchmarks in image generation tasks.
-- **Simplicity in Experimentation:** This architecture allows for quick iterations and testing, making it ideal for experimentation.
+![image](https://github.com/user-attachments/assets/3c09337f-2280-4a09-ad91-d0972ba73e34)
 
-This architecture ensures a robust and reliable foundation for exploring the power of GANs.
+<h3 align="center">Generative Adversarial Network Workflow</h3>
 
-## 4. Mathematics of This Model
+🛠 Features
 
-At the core of this DCGAN implementation lies the interplay between two neural networks: the **generator (G)** and the **discriminator (D)**. These networks are trained adversarially, with each having a specific mathematical objective.
+Data Download & Preprocessing: Automatically downloads the CelebA dataset and prepares it for training, including resizing and normalization.
 
-### Generator Objective
-The generator's goal is to generate data that is indistinguishable from real data. This is achieved by maximizing the discriminator's probability of misclassifying the generated data as real.
+Custom Layers and Models: Utilizes TensorFlow and Keras to build a highly tailored GAN architecture.
 
-The generator's loss function is defined as:
-\[
-L_G = -\mathbb{E}_{z \sim p_z(z)} [\log(D(G(z)))]
-\]
-Where:
-- \( G(z) \) is the generator's output given a latent noise vector \( z \).
-- \( D(G(z)) \) is the discriminator's output when evaluating \( G(z) \).
+Dynamic Image Generation: The model is trained to create new, realistic face images that are different from the training dataset.
 
-### Discriminator Objective
-The discriminator's task is to correctly classify real data from the dataset (\( x \)) and fake data from the generator (\( G(z) \)).
+Visual Progress Tracking: Includes a callback function to save generated images at the end of each epoch, making it easy to monitor the progress of the GAN during training.
 
-The discriminator's loss function is:
-\[
-L_D = -\mathbb{E}_{x \sim p_{data}(x)} [\log(D(x))] - \mathbb{E}_{z \sim p_z(z)} [\log(1 - D(G(z)))]
-\]
+Loss Visualization: Plots the generator and discriminator losses, allowing for an in-depth analysis of the training process.
 
-### Combined Objective
-The combined objective of the GAN can be represented as a minimax optimization problem:
-\[
-\min_G \max_D \, \mathbb{E}_{x \sim p_{data}(x)} [\log(D(x))] + \mathbb{E}_{z \sim p_z(z)} [\log(1 - D(G(z)))]
-\]
+Flexible Parameters: Allows the user to modify important parameters such as the learning rate, latent dimension and number of epochs.
 
-Here:
-- The discriminator tries to maximize this objective by accurately classifying real and fake data.
-- The generator tries to minimize this objective by "fooling" the discriminator into thinking its outputs are real.
+Modular Code: The codebase is neatly organized into separate functions and classes for easy comprehension and maintenance.
 
-### Example of Communication Between G and D
-1. **Generator Forward Pass:**
-   - Input: Random noise vector \( z \sim \mathcal{N}(0, 1) \).
-   - Output: Fake image \( G(z) \).
+TensorBoard Integration: Enables the use of TensorBoard for enhanced visualization of training parameters and network graph.
 
-2. **Discriminator Evaluation:**
-   - Input: Both real data \( x \) and fake data \( G(z) \).
-   - Output: Classification probabilities \( D(x) \) and \( D(G(z)) \).
+Model Checkpoints: Implements saving and loading model weights for each training session, ensuring progress is not lost and allowing resuming training.
 
-3. **Loss Calculation:**
-   - Compute \( L_D \) and \( L_G \) using the outputs of \( D(x) \) and \( D(G(z)) \).
+### 📸 Screenshots
+![image](https://github.com/user-attachments/assets/ff16c41b-20ae-4809-b587-15fa31148d26)
 
-4. **Backpropagation:**
-   - Update \( D \)'s weights to improve real/fake classification.
-   - Update \( G \)'s weights to improve fake data quality.
+<h3 align="center">Generated faces after 100 Epochs of training</h3>
 
-By iterating this process, the generator and discriminator improve, leading to high-quality outputs.
+![image](https://github.com/user-attachments/assets/9fe84f75-0f28-47ae-9091-d197bb37fe39)
 
-## 5. Example Data Flow
+<h3 align="center">Generated faces after 200 Epochs of training</h3>
 
-This section walks through how a sample data point flows through the DCGAN architecture, detailing the mathematical operations and transformations at each step.
+![image](https://github.com/user-attachments/assets/d295284e-824f-4995-b203-4cfeea113e03)
 
-### Step 1: Latent Space Input
-- The generator receives a random noise vector \( z \) sampled from a normal distribution:
-  \[
-  z \sim \mathcal{N}(0, 1)
-  \]
-- Example: If \( z \) is a 100-dimensional vector, it serves as the input to the generator.
+<h3 align="center">GAN loss visualization</h3>
 
-### Step 2: Generator Transformation
-- The generator applies a series of transposed convolutional layers to upsample \( z \) into an image-like structure.
-- For example, if the target image size is \( 64 \times 64 \):
-  - \( z \) transforms through intermediate layers (e.g., \( 4 \times 4 \), \( 16 \times 16 \), \( 64 \times 64 \)).
-  - Batch normalization and ReLU activations are applied at each step.
 
-Mathematically, each layer applies:
-\[
-x' = \text{ReLU}(\text{BatchNorm}(\text{ConvTranspose}(x)))
-\]
+## 🔧 Installation
 
-### Step 3: Discriminator Evaluation
-- The discriminator takes as input:
-  - Real data \( x \) from the dataset.
-  - Fake data \( G(z) \) generated by the generator.
-- The discriminator applies convolutional layers to downsample and extract features, followed by a final sigmoid activation to output a classification probability \( D(x) \) or \( D(G(z)) \).
+### Prerequisites
 
-For a convolutional layer, the operation is:
-\[
-y = \text{LeakyReLU}(\text{BatchNorm}(\text{Conv}(x)))
-\]
+-   **Python 3.x** installed on your machine. [Download Python](https://www.python.org/downloads/)
+-   **TensorFlow 2.x** installed. Install using pip:
 
-### Step 4: Loss Calculation
-- The discriminator computes separate losses for real and fake data:
-  \[
-  L_D = -\log(D(x)) - \log(1 - D(G(z)))
-  \]
-- The generator computes its loss based on how well it fools the discriminator:
-  \[
-  L_G = -\log(D(G(z)))
-  \]
+    ```bash
+    pip install tensorflow
+    ```
+-   **Keras** installed. Keras is usually installed with Tensorflow but can also be installed with pip:
+    ```bash
+    pip install keras
+    ```
+-   **NumPy** library for Python. Install using pip:
 
-### Step 5: Backpropagation
-- The losses \( L_D \) and \( L_G \) are used to compute gradients via backpropagation:
-  - Update \( D \)'s weights to improve classification.
-  - Update \( G \)'s weights to improve data generation.
+    ```bash
+    pip install numpy
+    ```
+-   **Matplotlib** library for plotting. Install using pip:
+    ```bash
+    pip install matplotlib
+    ```
+- **Kaggle API key:** To download the CelebA dataset directly using Kaggle CLI, you need to have your Kaggle API key set up. Follow the steps from the "Download Data" section.
 
-### Flow Example
-1. **Input to Generator:** Random vector \( z = [0.5, -0.8, 0.1, \ldots] \).
-2. **Generator Output:** \( G(z) \) produces a \( 64 \times 64 \) fake image.
-3. **Discriminator Evaluation:** \( D(G(z)) = 0.3 \), \( D(x) = 0.9 \).
-4. **Losses:**
-   - \( L_D = -\log(0.9) - \log(1 - 0.3) \).
-   - \( L_G = -\log(0.3) \).
-5. **Backpropagation:** Gradients adjust \( G \) and \( D \) to improve performance.
+### Steps
 
-This iterative process ensures that the generator and discriminator improve together, leading to realistic outputs.
+1.  **Clone the Repository:**
 
-## 6. How I Made It
+    ```bash
+    git clone https://github.com/Aman-Devs/Generative-Adversarial-Network-GAN.git
+    cd Generative-Adversarial-Network-GAN
+    ```
 
-The implementation of this DCGAN was developed using TensorFlow, a popular deep learning framework known for its flexibility and scalability. Here’s a breakdown of the steps involved:
+2.  **Set up Kaggle API Key:**
+    - First you need to get your kaggle api key from the kaggle website in your profile under "Account".
+    - Then you need to replace "kaggle.json" with the name of the downloaded file in the code below.
 
-### Step 1: Setting Up the Environment
-- Tools and frameworks:
-  - Python as the programming language.
-  - TensorFlow and Keras for building and training the neural networks.
-  - NumPy and Matplotlib for data preprocessing and visualization.
-- Dependencies installed via `pip`, including `tensorflow`, `numpy`, and `matplotlib`.
+    ```bash
+    pip install -q kaggle
+    mkdir ~/.kaggle
+    cp kaggle.json ~/.kaggle/
+    chmod 600 /root/.kaggle/kaggle.json
+    ```
 
-### Step 2: Building the DCGAN Architecture
-1. **Generator:**
-   - Implemented using TensorFlow's `Sequential` API.
-   - Used transposed convolutional layers (`Conv2DTranspose`) for upsampling the input noise vector.
-   - Added batch normalization layers to stabilize training.
-   - ReLU activation functions for hidden layers and a `tanh` activation for the output to map the generated images to the range [-1, 1].
+3.  **Install Libraries:**
 
-2. **Discriminator:**
-   - Designed using `Conv2D` layers for feature extraction and downsampling.
-   - Applied LeakyReLU activation for improved gradient flow during training.
-   - Used dropout layers to prevent overfitting.
-   - A sigmoid activation in the output layer to classify images as real or fake.
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### Step 3: Data Preparation
-- **Dataset:**
-  - Leveraged TensorFlow's `datasets` module to load a dataset like MNIST, CIFAR-10, or CelebA.
-  - Images were resized to the required dimensions and normalized to the range [-1, 1].
-- **Data Pipeline:**
-  - Created a pipeline using `tf.data` for efficient data loading and batching.
+4.  **Run the Application:**
 
-### Step 4: Training the Model
-- Implemented the training loop manually using TensorFlow's GradientTape for automatic differentiation:
-  1. Forward pass real images through the discriminator to compute \( D(x) \).
-  2. Generate fake images \( G(z) \) and compute \( D(G(z)) \).
-  3. Calculate losses:
-     - **Discriminator Loss** (\( L_D \)): Encourages the discriminator to correctly classify real and fake images.
-     - **Generator Loss** (\( L_G \)): Encourages the generator to produce images that fool the discriminator.
-  4. Backpropagate the losses using TensorFlow's optimizers (`Adam`) and update the parameters of the generator and discriminator.
+    ```bash
+    python gan.py
+    ```
 
-### Step 5: Visualizing Results
-- Generated images were saved and displayed during training using TensorFlow's `matplotlib` integration.
-- Training metrics (e.g., losses) were plotted to monitor progress and stability.
+---
 
-### Step 6: Testing the Model
-- After training, the generator was tested with random noise inputs (\( z \)) to generate and evaluate diverse outputs.
-- The model’s performance was assessed by visual inspection of the generated images and comparison with real images.
+## 💻 Usage
 
-This TensorFlow-based implementation provides a clean and efficient approach to building a DCGAN, ensuring flexibility for further experimentation.
+Upon running the application, the training process for the GAN will start. The images generated during each epoch will be saved in the "generated" directory, and the loss graph will be displayed after the training is completed.
 
-## 7. Results
+### Steps:
 
-The results of training the DCGAN showcase the ability of the generator to produce realistic images that resemble the training data. Here’s a summary of what was achieved:
+1.  **Run `gan.py`:** Execute the main script to start the training process:
+    ```bash
+        python gan.py
+    ```
+2.  **Monitor Training:** Observe the training progress directly from the console, or by visualizing the training metrics using TensorBoard. The generated images at the end of every epoch will provide a visual indication of the training progression.
+3.  **Generated Images:** The generated images during each epoch are saved in the `generated/` folder. These images can be used to assess the training quality.
+4.  **Loss Plot:** A graph containing the loss values of the discriminator and the generator will be displayed to visualize their evolution during training.
+5. **Model Checkpoints:** The weights for the generator and discriminator models will be saved at the end of each epoch in the `model_checkpoints` directory
 
-### Generated Images
-- Over the course of training, the generator progressively improved its outputs, transitioning from random noise to realistic-looking images.
-- Sample generated images:
-  - Early Epochs: Images were blurry and lacked recognizable structure.
-  - Mid Training: Images began to exhibit recognizable features.
-  - Final Epochs: Images closely resembled real data with sharp details and coherent structures.
+---
 
-### Metrics
-- **Generator Loss (\( L_G \)):**
-  - Decreased steadily as the generator learned to fool the discriminator.
-- **Discriminator Loss (\( L_D \)):**
-  - Balanced fluctuations were observed, indicating healthy adversarial learning without mode collapse.
+## ⚙️ Codebase Overview
 
-### Visualization of Results
-1. **Generated Images:**
-   - Visualized generated images at various training epochs to monitor progress.
-   - Example:
-     - Epoch 1: Noise-like outputs.
-     - Epoch 50: Partially structured outputs.
-     - Epoch 100: Fully structured and realistic outputs.
+### Main Modules
 
-2. **Loss Plots:**
-   - Plotted \( L_G \) and \( L_D \) to observe training dynamics and ensure stability.
+1.  `gan.py`: The main script that orchestrates the GAN training process. It includes data loading, model definition, and training loops, making it the central point for running the application.
 
-### Observations
-- The model successfully generated high-quality images that closely resembled the training data distribution.
-- Minor artifacts were observed in some images, indicating areas for potential improvement.
+2.  **Model Definition:** The code includes classes and functions for defining the generator and discriminator models:
+    -   The generator uses a series of `Conv2DTranspose` layers with Batch Normalization and Leaky ReLU activation to upscale the latent space into an image. This architecture is responsible for creating synthetic images based on random noise.
+    -   The discriminator employs `Conv2D` layers with Batch Normalization and Leaky ReLU to downsample the images. This is designed to assess the authenticity of the generated images.
 
-### Limitations
-- The model occasionally exhibited:
-  - Lack of diversity in generated samples.
-  - Overfitting to certain features of the training dataset.
+3.  **Training Loop:**
+    -  Uses a customized training loop with `train_step` method to ensure proper training of GAN.
+     - Implements a separate optimizers for the discriminator and the generator.
+    -   Uses the binary cross-entropy loss function for the adversarial training.
 
-Despite these limitations, the results demonstrate the effectiveness of the DCGAN architecture in generating realistic images.
+4.  **Data Loading:**
+    -   Automatically downloads the CelebA dataset from Kaggle.
+    -  Uses `tf.data.Dataset` to efficiently load and preprocess images.
+
+5.  **Callbacks:**
+    - Includes a custom `ShowImage` callback to monitor training progress by saving the generated images at the end of each epoch. This provides a visual aid to evaluate how well the generator is working.
+    - Implements a `ModelCheckpoint` callback that saves the model weights after every epoch. This ensures that the progress is not lost during training.
+
+6. **Loss Visualization:**
+    - Includes a section that displays the loss graphs for both the generator and the discriminator.
+
+### Key Design Choices
+
+-   **Leaky ReLU:** The choice of Leaky ReLU over traditional ReLU is to prevent the issue of vanishing gradients, which is common in GANs. This promotes a more stable and faster learning process.
+-   **Batch Normalization:** Batch Normalization is used to normalize layer inputs, which leads to faster convergence and more stable training.
+-   **Adam Optimizer:** The Adam optimizer is selected due to its adaptive learning rate characteristics, which helps with the training stability of GANs.
+-   **Convolutional Layers:** Convolutional layers are used to capture spatial hierarchies within the image data, allowing the model to learn complex features effectively.
+-   **Transposed Convolutions:** Transposed Convolutions are used in the generator to upscale the image while learning the features needed for generating new images
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions to enhance this GAN project! Here's how you can help:
+
+1.  **Fork the Project**
+2.  **Create your Feature Branch:** `git checkout -b feature/AmazingFeature`
+3.  **Commit your Changes:** `git commit -m 'Add some AmazingFeature'`
+4.  **Push to the Branch:** `git push origin feature/AmazingFeature`
+5.  **Open a Pull Request**
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+
+## 🙏 Acknowledgments
+
+-   This project is inspired by the original GAN paper by Ian Goodfellow et al.
+-   The CelebA dataset is used for training the model and can be obtained from Kaggle.
+-   Tools used:
+    -   TensorFlow & Keras for model creation and training.
+    -   Matplotlib for data visualization.
+    -   Numpy for numerical computation
+
+<p align="center">
+  Made with ❤️ by Aman
+</p>
 
